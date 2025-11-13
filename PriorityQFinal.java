@@ -127,7 +127,7 @@ public class PriorityQ {
                 initialBudget, remaining);
 
         for (Department d : depts) {
-            System.out.println("Department: " + d.name);
+            System.out.println("Department of " + d.name);
             System.out.printf("  Total Spent: $%.2f\n", d.spent);
             System.out.printf("  Percent of Budget: %.2f%%\n\n",
                     (d.spent / initialBudget) * 100);
@@ -149,3 +149,4 @@ public class PriorityQ {
         }
     }
 }
+
