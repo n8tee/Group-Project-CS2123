@@ -3,7 +3,7 @@ package pq;
 import java.io.*;
 import java.util.*;
 
-public class PriorityQFinal {
+public class PriorityQ {
 
     // Item
     public static class Item {
@@ -76,12 +76,12 @@ public class PriorityQFinal {
         if (!d.hasDesired()) {
             double amt = Math.min(1000.0, remaining);
             d.addScholarship(amt);
-            log.add(d.name + " - Scholarship - $" + String.format("%.2f", amt));
+            log.add("Department of " + String.format("%-30s", d.name) + " - Scholarship\n- $" + String.format("%.2f", amt));
             return amt;
         } else {
             Item it = d.pollDesired();
             d.addReceived(it);
-            log.add(d.name + " - " + it.name + " - $" + String.format("%.2f", it.price));
+            log.add("Department of " + String.format("%-30s", d.name) + String.format( " - %-8s",it.name) + "\n- $" + String.format("%.2f", it.price));
             return it.price;
         }
     }
@@ -98,7 +98,7 @@ public class PriorityQFinal {
 
         double totalBudget = 1000;
         System.out.println("This solution was completed by: \n<Nikolas Romero>\n<Nathaniel Hughes>");
-        System.out.println("TESTING WITH TOTAL BUDGET: " + totalBudget);
+        System.out.println("\nTESTING WITH TOTAL BUDGET: " + totalBudget);
         double initialBudget = totalBudget;
         List<String> purchaseLog = new ArrayList<>();
 
@@ -117,31 +117,35 @@ public class PriorityQFinal {
     static void printReport(List<String> log, List<Department> depts,
                             double initialBudget, double remaining) {
         System.out.println("\nITEMS PURCHASED");
+        System.out.println("---------------------------------"
+        		+ "---------------------------------------");
         for (String s : log) System.out.println(s);
 
-        System.out.println("\nSummary:");
+        System.out.println("---------------------------------"
+        		+ "---------------------------------------");
         System.out.printf("Total Budget: $%.2f\nRemaining Budget: $%.2f\n\n",
                 initialBudget, remaining);
 
         for (Department d : depts) {
             System.out.println("Department: " + d.name);
             System.out.printf("  Total Spent: $%.2f\n", d.spent);
-            System.out.printf("  Percent of Budget: %.2f%%\n",
+            System.out.printf("  Percent of Budget: %.2f%%\n\n",
                     (d.spent / initialBudget) * 100);
 
             System.out.println("  ITEMS RECEIVED:");
             if (d.itemsReceived.isEmpty()) System.out.println("    None");
             else
                 for (Item i : d.itemsReceived)
-                    System.out.printf("    %-25s $%8.2f\n", i.name, i.price);
+                    System.out.printf("\t - %-30s \t$%8.2f\n", i.name, i.price);
 
             System.out.println("  ITEMS NOT RECEIVED:");
-            if (d.itemsRemoved.isEmpty()) System.out.println("    None");
+            if (d.itemsRemoved.isEmpty()) System.out.println("\t - None");
             else
                 for (Item i : d.itemsRemoved)
-                    System.out.printf("    %-25s $%8.2f\n", i.name, i.price);
+                    System.out.printf("\t - %-30s \t$%8.2f\n", i.name, i.price);
 
-            System.out.println();
+            System.out.println("---------------------------------"
+            		+ "---------------------------------------");
         }
     }
 }
