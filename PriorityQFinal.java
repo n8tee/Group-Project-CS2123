@@ -98,7 +98,7 @@ public class PriorityQ {
 
         double totalBudget = 1000;
         System.out.println("This solution was completed by: \n<Nikolas Romero>\n<Nathaniel Hughes>");
-        System.out.println("\nTESTING WITH TOTAL BUDGET: " + totalBudget);
+        System.out.println("\nTESTING WITH TOTAL BUDGET: $" + totalBudget);
         double initialBudget = totalBudget;
         List<String> purchaseLog = new ArrayList<>();
 
@@ -149,4 +149,5 @@ public class PriorityQ {
         }
     }
 }
+
 
